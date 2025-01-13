@@ -10,4 +10,4 @@
 * Downloaded and unzipped the Fraud folder
 * Checked the data format
 * Noticed state column heading is missing
-* Added column heading state, set rows without a state present to null
+* Added column heading state
