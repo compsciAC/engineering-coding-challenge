@@ -9,10 +9,22 @@ transaction_1_df = spark.read.csv("C:/Users/ThinkPad/GitProjects/engineering-cod
 transaction_2_df = spark.read.csv("C:/Users/ThinkPad/GitProjects/engineering-coding-challenge/Data/transaction-002.csv", header=True, inferSchema=True)
 transactions_df = transaction_1_df.union(transaction_2_df)
 
+card_prefixes = {
+    'maestro': ['5018', '5020', '5038', '56##'],
+    'mastercard': ['51', '52', '54', '55', '222%'],
+    'visa': ['4'],
+    'amex': ['34', '37'],
+    'discover': ['6011', '65'],
+    'diners': ['300', '301', '304', '305', '36', '38'],
+    'jcb16': ['35'],
+    'jcb15': ['2131', '1800']
+}
+
+
 def remove_invalid_cards(card_dataframe):
     card_pattern = r"^(5018|5020|5038|56\d{2}|51|52|54|55|222\d*|4|34|37|6011|65|300|301|304|305|36|38|35|2131|1800)"
     card_dataframe = card_dataframe.filter(col("credit_card_number").rlike(card_pattern))
-
+    
     return card_dataframe
 
 def find_fraudulent_transactions(card_dataframe, fraud_dataframe):

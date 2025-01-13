@@ -11,3 +11,11 @@
 * Checked the data format
 * Noticed state column heading is missing
 * Added column heading state
+
+## Part 3
+* Combined the transactions data sets
+* Used Regex to remove invalid card numbers
+
+## Part 4
+* Joined Transactions dataframe with fraud dataframe
+* counted rows to give number of fraudulent transactions
