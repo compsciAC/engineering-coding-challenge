@@ -21,7 +21,6 @@ def sanitise_data(file_path, prefix_map):
     df['valid_vendor'] = df['credit_card_number'].astype(str).apply(
         lambda x: get_vendor(x, prefix_map)
     )
-    print(df)
     return df[df['valid_vendor'].notnull()]
 
 def find_fraudulent_transactions(fraud_file, transactions_df):
